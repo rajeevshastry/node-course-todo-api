@@ -31,8 +31,8 @@ db.collection('Todos').find().count().then((count)=>{
 	})
 */
 
-db.collection('Users').find({
-	name: 'Epic Group'
+db.collection('Todos').find({
+	name: 'Hello Fouad'
 }).toArray().then((docs)=>{
 	//console.log('Users');
 	console.log(JSON.stringify(docs, undefined, 2));
