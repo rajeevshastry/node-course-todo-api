@@ -1,13 +1,44 @@
-const express = require('express');
+/* var mongoose = require('mongoose');
+mongoose.Promise =  global.Promise;
 
-var app = express();
+mongoose.connect('mongodb://localhost:27017/TodoApp') */;
 
-app.get('/', function(req, res) {
- console.log('Welcome to Epic');
+/* var Todo = mongoose.model('Todo',{
+	text: {
+		type: String,
+		required: true,
+		minlength:1,
+		trim: true
+	},
+	completed:{
+		type: Boolean,
+		default:false
+	},
+	completedAt:{
+		type: Number,
+		default: null
+		
+	}
+}); */
+var User = mongoose.model('User',{
+	email: {
+		type: String,
+		required: true,
+		minlength: 1,
+		trim: true
+		}
 });
 
-
-app.listen(3500,()=>{
-	console.log(`Server is up and running at port `);
-});
-
+var todo = new User({
+		email: 'req.body.text'
+	});
+	//console.log(req.body.text);
+	todo.save().then((doc)=>{
+		//res.send(doc);
+		console.log(doc);
+		
+	}, (e)=>{
+		//res.status(400).send(e);
+		
+		console.log(e);
+	});
