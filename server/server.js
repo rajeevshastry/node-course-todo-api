@@ -34,7 +34,14 @@ app.post('/todos', (req, res) => {
 });
 
 //Get Method
-
+app.get('/todos', (req, res)=>{
+	Todo.find().then((todos)=>{
+		res.send({todos,
+		test: 'Sucess!!'});
+	}, (e)=>{
+		res.status(400).send(e);
+	})
+});
 //GET /todos
 
 app.listen(port, () => {
